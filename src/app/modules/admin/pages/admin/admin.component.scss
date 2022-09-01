@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@500&display=swap');
+
+$default_font: 'Anek Telugu', sans-serif;;
+
+.header {
+  display: flex;
+  place-content: center center;
+  font-family: $default_font;
+  margin: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}

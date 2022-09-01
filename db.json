@@ -1,0 +1,85 @@
+{
+  "products": [
+    {
+      "id":1,
+      "name": "Playstation 5",
+      "active": true,
+      "enterprise": "Sony",
+      "image": "https://http2.mlstatic.com/D_NQ_NP_903998-MLA51000805642_082022-O.webp",
+      "quantity": 500,
+      "quantity_sell": 0,
+      "price": 4797.90,
+      "description": "Com seu console PlayStation 5 você terá entretenimento garantido todos os dias. Sua tecnologia foi criada para colocar novos desafios para jogadores novatos e especialistas.",
+      "tags": ["video game", "eletronics"],
+      "stars": 5,
+      "stars_count": 1
+    },
+    {
+      "id":2,
+      "name": "Notebook Dell Gamer 3590 Core I7 9gen 8gb 512ssd Gtx1660ti",
+      "active": true,
+      "enterprise": "Dell",
+      "image": "https://http2.mlstatic.com/D_NQ_NP_684878-MLB46669930803_072021-O.webp",
+      "quantity": 120,
+      "quantity_sell": 3,
+      "price": 8775.90,
+      "description": "com processadores Intel® i5 e i7 de 10ª geração, você pode desfrutar de desempenho eficiente sem interromper seus jogos, streaming ou vídeos.",
+      "tags": ["notebook", "eletronics"],
+      "stars": 5,
+      "stars_count": 1
+    },
+    {
+      "id":3,
+      "name": "DELETE 3",
+      "active": false,
+      "enterprise": "Dell",
+      "image": "https://http2.mlstatic.com/D_NQ_NP_684878-MLB46669930803_072021-O.webp",
+      "quantity": 120,
+      "quantity_sell": 3,
+      "price": 8775.90,
+      "description": "com processadores Intel® i5 e i7 de 10ª geração, você pode desfrutar de desempenho eficiente sem interromper seus jogos, streaming ou vídeos.",
+      "tags": ["notebook", "eletronics"],
+      "stars": 5,
+      "stars_count": 1
+    },
+    {
+      "id":4,
+      "name": "DELETE 4",
+      "active": true,
+      "enterprise": "Dell",
+      "image": "https://http2.mlstatic.com/D_NQ_NP_684878-MLB46669930803_072021-O.webp",
+      "quantity": 120,
+      "quantity_sell": 3,
+      "price": 8775.90,
+      "description": "com processadores Intel® i5 e i7 de 10ª geração, você pode desfrutar de desempenho eficiente sem interromper seus jogos, streaming ou vídeos.",
+      "tags": ["notebook", "eletronics"],
+      "stars": 5,
+      "stars_count": 1
+    },
+    {
+      "id":5,
+      "name": "DELETE 5",
+      "active": true,
+      "enterprise": "Dell",
+      "image": "https://http2.mlstatic.com/D_NQ_NP_684878-MLB46669930803_072021-O.webp",
+      "quantity": 120,
+      "quantity_sell": 3,
+      "price": 8775.90,
+      "description": "com processadores Intel® i5 e i7 de 10ª geração, você pode desfrutar de desempenho eficiente sem interromper seus jogos, streaming ou vídeos.",
+      "tags": ["notebook", "eletronics"],
+      "stars": 5,
+      "stars_count": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Enzo",
+      "last_name": "Cassemiro",
+      "adress": "Rua da sua Casa",
+      "adress_number": 555,
+      "cart": [],
+      "cart_purchase": []
+    }
+  ]
+}

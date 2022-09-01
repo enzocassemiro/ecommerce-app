@@ -1,0 +1,142 @@
+<div class="header">
+    <h1>Admin Page</h1>
+</div>
+
+<p-button (click)="showDialogCreateProduct()" label="Create Product" icon="pi pi-check"></p-button>
+
+<p-table [value]="products" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Code (ID)</th>
+          <th>Status (Active)</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Quantity Sells</th>
+          <th>Actions</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{product.id}}</td>
+          <td>{{product.active}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.tags}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.quantity_sell}}</td>
+          <td>
+            <button
+              (click)="showDialogDetailProduct(product.id)"
+              icon="pi pi-info-circle"
+              pTooltip="Info"
+              pButton
+              pRipple
+              type="button"
+              class="p-button-info">
+            </button>
+            <button
+              (click)="showDialogDetailProduct(product.id)"
+              icon="pi pi-pencil"
+              pTooltip="Edit"
+              pButton
+              pRipple
+              type="button"
+              class="p-button-warning">
+            </button>
+            <button
+              (click)="showDialogDeleteProduct(product.id)"
+              icon="pi pi-trash"
+              pTooltip="Delete"
+              pButton
+              pRipple
+              type="button"
+              class="p-button-danger">
+            </button>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  header="Title"
+  [(visible)]="displayCreate">
+  <form [formGroup]="productForm">
+    <div class="form">
+      <label>Product is active?</label>
+      <p-inputSwitch formControlName="active"></p-inputSwitch>
+    </div>
+  </form>
+</p-dialog>
+
+<p-dialog
+  [header]="'Are you sure you want delete product: ' + productSelected?.name + '?'"
+  [(visible)]="displayDelete"
+  [modal]="true">
+  <h3>
+    Informations from product
+  </h3>
+  <p>
+    Id: {{productSelected?.id}} <br>
+    Name: {{productSelected?.name}} <br>
+    Price: {{productSelected?.price}} <br>
+    Categories: {{productSelected?.tags}}
+  </p>
+  <ng-template pTemplate="footer">
+    <button
+      (click)="deleteProductById(productSelected!.id)"
+      icon="pi pi-trash"
+      label="Delete"
+      pButton
+      pRipple
+      type="button"
+      class="p-button-danger"></button>
+    <button
+      (click)="displayDelete=false"
+      label="Cancel"
+      pButton
+      pRipple
+      type="button"
+      class="p-button-secondary"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  [header]="'Details Product: ' + productSelected?.name + '?'"
+  [(visible)]="displayDetail"
+  [modal]="true">
+  <h3>Informations from product</h3>
+  <p>
+    Id: {{productSelected?.id}} <br>
+    Active: {{productSelected?.active}} <br>
+    Name: {{productSelected?.name}} <br>
+    Enterprise: {{productSelected?.enterprise}} <br>
+    Image Link: {{productSelected?.image}} <br>
+    Quantity: {{productSelected?.quantity}} <br>
+    Quantity Sell: {{productSelected?.quantity_sell}} <br>
+    Description: {{productSelected?.description}} <br>
+    Price: {{productSelected?.price}} <br>
+    Categories: {{productSelected?.tags}} <br>
+    Starts: {{productSelected?.stars}} <br>
+    Starts Count: {{productSelected?.stars_count}} <br>
+  </p>
+  <ng-template pTemplate="footer">
+    <button
+      (click)="copyProductDetail()"
+      label="Copy To Clipboard"
+      icon="pi pi-copy"
+      pButton
+      pRipple
+      type="button"
+      class="p-button-secondary"></button>
+    <button
+      (click)="displayDetail=false"
+      label="Ok"
+
+      pButton
+      pRipple
+      type="button"
+      class="p-button-secondary"></button>
+  </ng-template>
+</p-dialog>
+
+<p-toast position="top-right"></p-toast>
