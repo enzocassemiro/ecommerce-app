@@ -14,8 +14,16 @@ export class ProductsService {
 
   private baseUrl: string = "http://localhost:3000/products"
 
+  createProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.baseUrl, product)
+  }
+
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl)
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.baseUrl}/${product.id}`, product)
   }
 
   deleteProductById(id: number): Observable<Product> {
