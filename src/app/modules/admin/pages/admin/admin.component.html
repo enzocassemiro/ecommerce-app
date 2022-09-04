@@ -1,69 +1,127 @@
+<app-header></app-header>
+
 <div class="header">
     <h1>Admin Page</h1>
 </div>
 
 <p-button (click)="showDialogCreateProduct()" label="Create Product" icon="pi pi-check"></p-button>
 
-<p-table [value]="products" responsiveLayout="scroll">
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Code (ID)</th>
-          <th>Status (Active)</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Quantity</th>
-          <th>Quantity Sells</th>
-          <th>Actions</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
-      <tr>
-          <td>{{product.id}}</td>
-          <td>{{product.active}}</td>
-          <td>{{product.name}}</td>
-          <td>{{product.tags}}</td>
-          <td>{{product.quantity}}</td>
-          <td>{{product.quantity_sell}}</td>
-          <td>
-            <button
-              (click)="showDialogDetailProduct(product.id)"
-              icon="pi pi-info-circle"
-              pTooltip="Info"
-              pButton
-              pRipple
-              type="button"
-              class="p-button-info">
-            </button>
-            <button
-              (click)="showDialogDetailProduct(product.id)"
-              icon="pi pi-pencil"
-              pTooltip="Edit"
-              pButton
-              pRipple
-              type="button"
-              class="p-button-warning">
-            </button>
-            <button
-              (click)="showDialogDeleteProduct(product.id)"
-              icon="pi pi-trash"
-              pTooltip="Delete"
-              pButton
-              pRipple
-              type="button"
-              class="p-button-danger">
-            </button>
+
+<div class="table">
+  <p-table  [value]="products" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Code (ID)</th>
+            <th>Status (Active)</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Quantity Sells</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.id}}</td>
+            <td>
+              <div *ngIf="product.active">
+                <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-success p-button-text"></button>
+              </div>
+            </td>
+            <td>{{product.name}}</td>
+            <td>{{product.tags}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.quantity_sell}}</td>
+            <td >
+              <div class="actions">
+                <button
+                  (click)="showDialogDetailProduct(product.id)"
+                  icon="pi pi-info-circle"
+                  pTooltip="Info"
+                  pButton
+                  pRipple
+                  type="button"
+                  class="p-button-info">
+                  </button>
+                  <button
+                  (click)="showDialogEditProduct(product.id)"
+                  icon="pi pi-pencil"
+                  pTooltip="Edit"
+                  pButton
+                  pRipple
+                  type="button"
+                  class="p-button-warning">
+                </button>
+                <button
+                  (click)="showDialogDeleteProduct(product.id)"
+                  icon="pi pi-trash"
+                  pTooltip="Delete"
+                  pButton
+                  pRipple
+                  type="button"
+                  class="p-button-danger">
+                </button>
+              </div>
           </td>
-      </tr>
-  </ng-template>
-</p-table>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-toast position="top-right"></p-toast>
 
 <p-dialog
-  header="Title"
+  header="Creating new Product"
+  [modal]="true"
+  [draggable]="false"
+  [maximizable]="true"
   [(visible)]="displayCreate">
-  <form [formGroup]="productForm">
+  <form [formGroup]="productForm" >
     <div class="form">
-      <label>Product is active?</label>
-      <p-inputSwitch formControlName="active"></p-inputSwitch>
+      <div>
+        <label>Create product with state active:</label>
+        <p-inputSwitch formControlName="active"></p-inputSwitch>
+      </div>
+      <div>
+        <label>Create product with promotion active:</label>
+        <p-inputSwitch formControlName="promotion"></p-inputSwitch>
+      </div>
+      <div>
+        <label>Product Name:</label>
+        <input type="text" pInputText formControlName="name">
+      </div>
+      <div>
+        <label>Product Enterprise:</label>
+        <input type="text" pInputText formControlName="enterprise">
+      </div>
+      <div>
+        <label>Image Link:</label>
+        <input type="text" pInputText formControlName="image">
+      </div>
+      <div>
+        <label>Quantity in Stock:</label>
+        <input type="text" pInputText formControlName="quantity">
+      </div>
+      <div>
+        <label>Price</label>
+        <input type="text" pInputText formControlName="price">
+      </div>
+      <div *ngIf="productForm.value.promotion">
+        <label>Discount Percentage (%):</label>
+        <input type="text" pInputText formControlName="promotion_percentage">
+      </div>
+      <div>
+        <label>Description:</label>
+        <input type="text" pInputText formControlName="description">
+      </div>
+      <div>
+        <label>Tags:</label>
+        <input type="text" pInputText formControlName="tags">
+        <small id="username1-help" class="block">Example: eletronics,game</small>
+      </div>
+      <div>
+        <button (click)="sendFormProduct()" [disabled]="!productForm.valid" pButton pRipple type="button" label="Create Product"></button>
+      </div>
     </div>
   </form>
 </p-dialog>
@@ -139,4 +197,57 @@
   </ng-template>
 </p-dialog>
 
-<p-toast position="top-right"></p-toast>
+<p-dialog
+  header="Edit Product"
+  [(visible)]="displayEdit"
+  [modal]="true">
+  <h3>Informations from product</h3>
+  <div class="form">
+    <div>
+      <label>Product Is Active:</label>
+      <p-inputSwitch [(ngModel)]="productSelectedEdit.active"></p-inputSwitch>
+    </div>
+    <div>
+      <label>Product Is Promotional Price:</label>
+      <p-inputSwitch [(ngModel)]="productSelectedEdit.promotion"></p-inputSwitch>
+    </div>
+    <div>
+      <label>Image Link:</label>
+      <input type="text" pInputText [(ngModel)]="productSelectedEdit.image">
+    </div>
+    <div>
+      <label>Quantity:</label>
+      <input type="text" pInputText [(ngModel)]="productSelectedEdit.quantity">
+    </div>
+    <div>
+      <label>Description:</label>
+      <input type="text" pInputText [(ngModel)]="productSelectedEdit.description">
+    </div>
+    <div *ngIf="productSelectedEdit.promotion">
+
+      <label>Promotion Percentage (%):</label>
+      <input type="text" pInputText [(ngModel)]="productSelectedEdit.promotion_percentage">
+    </div>
+    <div>
+      <label>Price:</label>
+      <input type="text" pInputText [(ngModel)]="productSelectedEdit.price">
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      (click)="updateProduct(productSelectedEdit)"
+      label="Update Product"
+      icon="pi pi-refresh"
+      pButton
+      pRipple
+      type="button"
+      class="p-button-warning"></button>
+    <button
+      (click)="displayEdit=false"
+      label="Cancel"
+      pButton
+      pRipple
+      type="button"
+      class="p-button-secondary"></button>
+  </ng-template>
+</p-dialog>

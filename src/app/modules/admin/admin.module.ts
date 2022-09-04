@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './pages/admin/admin.component';
 
@@ -27,7 +27,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     FormsModule,
     ReactiveFormsModule,
     InputSwitchModule,
-    InputTextModule
+    InputTextModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

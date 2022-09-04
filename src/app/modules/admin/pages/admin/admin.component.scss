@@ -9,7 +9,17 @@ $default_font: 'Anek Telugu', sans-serif;;
   margin: 20px;
 }
 
-.form {
+.form > div {
   display: flex;
   flex-direction: column;
+  margin: 7px;
+}
+
+.table {
+  margin: 30px;
+
+  .actions {
+    display: flex;
+    gap: 5px;
+  }
 }

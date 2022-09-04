@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { Product } from 'src/app/core/models/product.model';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 
@@ -17,17 +17,36 @@ export class AdminComponent implements OnInit, OnDestroy {
     private productService: ProductsService,
     private messageService: MessageService,
     private fb: FormBuilder
-  ) { this.setupProductForm() }
+  ) {
+      this.setupProductForm()
+    }
 
   componentDestroyer$: Subject<boolean> = new Subject;
 
   products!: Product[];
   productSelected?: Product;
+  productSelectedEdit: Product = {
+    id: 0,
+    active: false,
+    name: '',
+    enterprise: '',
+    image: '',
+    quantity: 0,
+    quantity_sell: 0,
+    price: 0,
+    promotion: false,
+    promotion_percentage: 0,
+    description: '',
+    tags: '',
+    stars: 0,
+    stars_count: 0
+  };
   productForm!: FormGroup;
 
   displayCreate: boolean = false;
   displayDelete: boolean = false;
   displayDetail: boolean = false;
+  displayEdit: boolean = false;
 
 
   ngOnInit(): void {
@@ -39,6 +58,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.componentDestroyer$.complete();
   }
 
+  test() {
+    console.log(this.productSelectedEdit);
+
+  }
+
   setupProductForm() {
     this.productForm = this.fb.group({
       active: [true],
@@ -48,10 +72,28 @@ export class AdminComponent implements OnInit, OnDestroy {
       quantity: [0, Validators.required],
       quantity_sell: [0],
       price: [0, Validators.required],
+      promotion: [false, Validators.required],
+      promotion_percentage: [0],
       description: ['', Validators.required],
       tags: ['', Validators.required],
       stars: [0],
       starts_count: [0]
+    })
+  }
+
+  sendFormProduct() {
+    console.log('Clicou?');
+    this.productService.createProduct(this.productForm.value)
+    .pipe(takeUntil(this.componentDestroyer$))
+    .subscribe({
+      next: (value) => {
+        console.log('Product Created!');
+      },
+      complete: () => {
+        this.getAllProducts();
+        this.showSuccess("Success!",'Product created!');
+        this.displayCreate = false;
+      }
     })
   }
 
@@ -88,6 +130,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.productSelected = this.products.find(x => x.id === productId)!;
   }
 
+  showDialogEditProduct(productId: number): void {
+    this.displayEdit = true;
+    this.productSelectedEdit = this.products.find(x => x.id === productId)!;
+  }
+
   getAllProducts(): void {
     this.productService.getAllProducts()
     .pipe(takeUntil(this.componentDestroyer$))
@@ -112,11 +159,29 @@ export class AdminComponent implements OnInit, OnDestroy {
         });
         this.products.splice(indexOfObject,1);
         this.displayDelete = false;
+      },
+      complete: () => {
+        this.showSuccess('Success!','Your product has been deleted!')
+      }
+
+    })
+  }
+
+  updateProduct(product: Product): void {
+    this.productService.updateProduct(product)
+    .pipe(takeUntil(this.componentDestroyer$))
+    .subscribe({
+      next: () => {
+
+      },
+      complete: () => {
+        this.displayEdit = false;
+        this.showSuccess('Success Updated!',`Product with id ${product.id} updated!`)
       }
     })
   }
 
-  showSuccess(title:string, text:string) {
+  showSuccess(title:string, text:string): void {
     this.messageService.add({severity:'success', summary: title, detail: text});
   }
 
