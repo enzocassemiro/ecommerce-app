@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+.header-aux {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #C600EA;
+  padding: 10px 30px;
+
+  .send-to {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 0px 5px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "icon ."
+      "icon .";
+    font-family: 'Raleway', sans-serif;
+
+    .adress {
+      font-weight: 600;
+    }
+
+    .icon {
+      grid-area: icon;
+      display: flex;
+      place-content: center center;
+      align-items: center;
+    }
+  }
+
+  .menu {
+    display: flex;
+    place-content: center flex-start;
+    align-items: center;
+    margin: 0 40px;
+    font-family: 'Raleway', sans-serif;
+  }
+
+
+  .user {
+    display: flex;
+    place-content: center center;
+    font-family: 'Raleway', sans-serif;
+    align-items: center;
+
+    .icon {
+      margin-right: 5px;
+    }
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 270px);
+  grid-auto-rows: auto;
+  gap: 1em;
+  place-content: center center;
+  margin-top: 20px;
+
+  .grid-card {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 400px;
+
+    .star-quantity {
+      display: flex;
+      place-content: center space-between;
+      align-items: center;
+
+      .quantity {
+        background-color: blue;
+      }
+
+      .star{
+        background-color: red;
+      }
+    }
+
+    .img-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 280px;
+
+      .image {
+        max-width: 240px;
+        max-height: 280px;
+      }
+    }
+  }
+
+
+
+}
+

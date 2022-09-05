@@ -22,6 +22,10 @@ export class ProductsService {
     return this.http.get<Product[]>(this.baseUrl)
   }
 
+  getProductByNameLike(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}?name_like=${name}`)
+  }
+
   updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.baseUrl}/${product.id}`, product)
   }

@@ -1,0 +1,58 @@
+<app-header type="client"></app-header>
+
+<div class="header-aux">
+  <div class="send-to">
+    <div class="icon">
+      <i class="pi pi-map-marker"></i>
+    </div>
+    <div>
+      <p>Send to {{user?.name}}</p>
+    </div>
+    <div class="adress">
+      <p>{{user?.adress}}</p>
+    </div>
+  </div>
+
+  <div class="menu">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="user">
+    <div class="icon">
+      <i class="pi pi-user"></i>
+    </div>
+    <div>
+      <p>{{user?.name}} {{user?.last_name}}</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="card">
+
+  <div *ngFor="let product of products">
+    <div class="grid-card">
+      <div class="star-quantity">
+        <div class="quantity">
+          {{product.quantity}}
+        </div>
+        <div class="star">
+          {{product.stars}}
+        </div>
+      </div>
+      <div class="img-div">
+        <img class="image" [src]="product.image" alt="">
+      </div>
+      <div>
+        <h4>{{product.name}}</h4>
+      </div>
+      <div>
+        <p>{{product.price}}</p>
+      </div>
+      <div>
+        <h5>Button</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
