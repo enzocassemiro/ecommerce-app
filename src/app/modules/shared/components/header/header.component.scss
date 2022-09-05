@@ -1,12 +1,71 @@
-.grid {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+.grid-admin {
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  padding: 5px 20px;
+
+  .left {
+    display: flex;
+    place-content: center center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75em;
+
+    img {
+      height: 70px;
+    }
+  }
 
   .center {
     display: flex;
     place-content: center center;
+    align-items: center;
   }
+
+  .right {
+    display: flex;
+    place-content: center center;
+    align-items: center;
+  }
+}
+
+.grid-client {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 80px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #C600EA;
+
+  padding: 5px 20px;
+
+  .left {
+    display: flex;
+    place-content: center center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75em;
+
+    img {
+      height: 70px;
+      transition: all .2s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .center {
+    display: flex;
+    place-content: center flex-start;
+    align-items: center;
+    margin-left: 50px;
+  }
+
 }

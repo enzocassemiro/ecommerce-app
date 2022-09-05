@@ -1,13 +1,56 @@
 
-<div class="grid">
-  <div>
-    <h1>Header</h1>
+<div *ngIf="type == 'admin'" class="grid-admin">
 
+  <div class="left">
+    <img src="../../../../../assets/penrose-triangle.png" alt="">
+    <h1> - Admin</h1>
   </div>
+
   <div class="center">
-    <h1>Center</h1>
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        placeholder="Search"
+        [(ngModel)]="searchInput"
+        (ngModelChange)="changeSearchValue()"/>
+    </span>
   </div>
-  <div>
-    <h1>Icons</h1>
+
+  <div class="right">
+    <p-avatar
+      icon="pi pi-user"
+      shape="circle"
+      pBadge
+      value="5"
+      severity="danger"
+      size="xlarge">
+    </p-avatar>
   </div>
 </div>
+
+<div *ngIf="type == 'client'" class="grid-client">
+
+  <div class="left">
+    <img src="../../../../../assets/penrose-triangle.png" alt="">
+    <h1> Three Shop</h1>
+  </div>
+
+  <div class="center">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        placeholder="Search Products, brands..."
+        [(ngModel)]="searchInput"
+        (ngModelChange)="changeSearchValue()"/>
+    </span>
+  </div>
+
+  <div>
+    <h3>Promos</h3>
+  </div>
+</div>
+

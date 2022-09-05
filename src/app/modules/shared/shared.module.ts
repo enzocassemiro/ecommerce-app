@@ -1,8 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { AvatarModule } from 'primeng/avatar';
+import { InputTextModule } from 'primeng/inputtext';
 
-import { SharedRoutingModule } from './shared-routing.module';
 import { HeaderComponent } from './components/header/header.component';
+import { SharedRoutingModule } from './shared-routing.module';
+import {AvatarGroupModule} from 'primeng/avatargroup';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +15,11 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    InputTextModule,
+    AvatarModule,
+    AvatarGroupModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent
