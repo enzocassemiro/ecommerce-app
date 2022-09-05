@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Observable, Subject, take, takeUntil } from 'rxjs';
 import { Product } from 'src/app/core/models/product.model';
 import { ProductsService } from 'src/app/core/services/products/products.service';
+import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
   selector: 'app-admin',
@@ -16,6 +17,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductsService,
     private messageService: MessageService,
+    private searchService: SearchService,
     private fb: FormBuilder
   ) {
       this.setupProductForm()
@@ -25,6 +27,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   products!: Product[];
   productSelected?: Product;
+  productForm!: FormGroup;
   productSelectedEdit: Product = {
     id: 0,
     active: false,
@@ -41,16 +44,20 @@ export class AdminComponent implements OnInit, OnDestroy {
     stars: 0,
     stars_count: 0
   };
-  productForm!: FormGroup;
 
   displayCreate: boolean = false;
   displayDelete: boolean = false;
   displayDetail: boolean = false;
   displayEdit: boolean = false;
 
-
   ngOnInit(): void {
     this.getAllProducts();
+    this.searchService.searchValue$
+      .pipe(takeUntil(this.componentDestroyer$))
+      .subscribe(value => this.productService.getProductByNameLike(value)
+      .subscribe(value => {
+        this.products = value
+      }));
   }
 
   ngOnDestroy(): void {
@@ -60,10 +67,9 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   test() {
     console.log(this.productSelectedEdit);
-
   }
 
-  setupProductForm() {
+  setupProductForm(): void {
     this.productForm = this.fb.group({
       active: [true],
       name: ['', Validators.required],
@@ -81,8 +87,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     })
   }
 
-  sendFormProduct() {
-    console.log('Clicou?');
+  sendFormProduct(): void {
     this.productService.createProduct(this.productForm.value)
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
