@@ -1,9 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { RatingModule } from 'primeng/rating';
+import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
-import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsComponent } from './pages/products/products.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductsRoutingModule } from './products-routing.module';
+
 
 
 @NgModule({
@@ -13,7 +19,12 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    SharedModule
+    SharedModule,
+    TooltipModule,
+    ButtonModule,
+    RatingModule,
+    FormsModule,
+    ToastModule
   ]
 })
 export class ProductsModule { }

@@ -1,3 +1,5 @@
+<p-toast position="top-right"></p-toast>
+
 <app-header type="client"></app-header>
 
 <div class="header-aux">
@@ -26,31 +28,51 @@
     </div>
   </div>
 
+  <div routerLink="/user/cart" class="cart">
+    <div class="cart__icon">
+      <i class="pi pi-shopping-cart"></i>
+    </div>
+    <div>
+      <p>Cart</p>
+    </div>
+  </div>
+
 </div>
 
 <div class="card">
-
   <div *ngFor="let product of products">
-    <div class="grid-card">
-      <div class="star-quantity">
-        <div class="quantity">
-          {{product.quantity}}
+    <div class="card__grid">
+      <div class="grid__top">
+        <div class="top__quantity">
+          <p>REMAIN</p>
+          <p class="quantity__text">
+            {{product.quantity}}
+          </p>
+          <p>units</p>
         </div>
-        <div class="star">
-          {{product.stars}}
+        <div class="top__star">
+          <p-rating [ngModel]="product.stars" [readonly]="true" [stars]="1" [cancel]="false"></p-rating>
+          <div *ngIf="product.stars_count">
+            <small class="star__count">({{product.stars_count}})</small>
+          </div>
         </div>
       </div>
-      <div class="img-div">
-        <img class="image" [src]="product.image" alt="">
+      <div class="grid__image-product">
+        <img class="image-product__img" [src]="product.image" alt="">
       </div>
-      <div>
-        <h4>{{product.name}}</h4>
+      <div class="grid__name-product">
+        <h4
+          [pTooltip]="product.name"
+          class="name-product__text">
+          {{product.name}}
+        </h4>
       </div>
-      <div>
-        <p>{{product.price}}</p>
+      <div class="grid__price-product">
+        <p class="price-product__price">{{product.price | currency:'BRL'}}</p>
+        <p class="price-product__price--divided">10x {{product.price / 10 | number:'1.0-2' | currency:'BRL'}}</p>
       </div>
-      <div>
-        <h5>Button</h5>
+      <div class="grid__button-buy">
+        <button [disabled]="product.quantity == 0" (click)="AddProductCart(product)" pButton pRipple type="button" label="Add Cart" class="p-button-success"></button>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { User } from 'src/app/core/models/user.model';
 import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
@@ -14,6 +15,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   @Input() type!: string;
+
+  @Input() user?: User;
 
   componentDestroyer$: Subject<boolean> = new Subject;
 

@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .header-aux {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-color: #C600EA;
+  background-color: #0693d4;
   padding: 10px 30px;
 
   .send-to {
@@ -30,6 +32,8 @@
       place-content: center center;
       align-items: center;
     }
+
+
   }
 
   .menu {
@@ -51,53 +55,126 @@
       margin-right: 5px;
     }
   }
+
+  .cart {
+    display: flex;
+    place-content: center center;
+    align-items: center;
+    margin-left: 10px;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+
+    .cart__icon {
+      margin-right: 5px;
+    }
+  }
 }
 
 .card {
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
   grid-auto-rows: auto;
-  gap: 1em;
+  gap: 2em;
   place-content: center center;
   margin-top: 20px;
 
-  .grid-card {
-    border: 1px solid black;
+  .card__grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    height: 400px;
+    height: 530px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    transition: width 2s, height 4s;
 
-    .star-quantity {
+    .grid__top {
       display: flex;
       place-content: center space-between;
       align-items: center;
+      margin: 5px 20px;
 
-      .quantity {
-        background-color: blue;
+      .top__quantity {
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        font-family: 'Sarabun', sans-serif;
+        padding: 5px;
+
+        .quantity__text {
+          font-weight: 600;
+        }
+
       }
 
-      .star{
-        background-color: red;
+      .top__star{
+        display: flex;
+        flex-direction: column;
+        place-content: center center;
+        align-items: center;
+        .star__count{
+          font-family: 'Poppins', sans-serif;
+        }
       }
     }
 
-    .img-div {
+    .grid__image-product {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 280px;
 
-      .image {
+      .image-product__img {
         max-width: 240px;
         max-height: 280px;
       }
     }
+
+    .grid__name-product {
+      place-content: center center;
+      align-items: center;
+      text-align: center;
+      margin: 0px 5px ;
+
+      .name-product__text {
+        height: 43px;
+        font-family: 'Sarabun', sans-serif;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+    }
+
+    .grid__price-product {
+
+      margin: 0 10px;
+
+      .price-product__price{
+        font-family: 'Poppins', sans-serif;
+        font-size: 25px;
+        font-weight: 600;
+      }
+
+      .price-product__price--divided{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: green;
+      }
+    }
+
+    .grid__button-buy {
+      display: flex;
+      place-content: center center;
+      align-items: center;
+    }
   }
-
-
-
 }
 
+.card__grid:hover{
+  transform: scale(1.01);
+}

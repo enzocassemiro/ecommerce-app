@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
 .grid-admin {
   display: grid;
@@ -38,10 +39,11 @@
 .grid-client {
   display: grid;
   grid-template-columns: auto 1fr auto;
+  align-items: center;
   grid-template-rows: 80px;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-color: #C600EA;
+  background-color: #0693d4;
 
   padding: 5px 20px;
 
@@ -51,6 +53,13 @@
     align-items: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75em;
+
+    .image {
+      cursor: pointer;
+    }
+    .link {
+      cursor: pointer;
+    }
 
     img {
       height: 70px;
@@ -68,4 +77,59 @@
     margin-left: 50px;
   }
 
+  .right {
+    display: flex;
+    place-content: center center;
+    align-items: center;
+    margin-right: 50px;
+    background-image: linear-gradient(to right, yellow, red);
+    padding: 0 35px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.grid-cart {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 80px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #0693d4;
+
+  padding: 5px 20px;
+
+  .left {
+    display: flex;
+    place-content: center center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75em;
+
+    .image {
+      cursor: pointer;
+    }
+    .link {
+      cursor: pointer;
+    }
+
+    img {
+      height: 70px;
+      transition: all .2s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .user {
+    display: flex;
+    place-content: center flex-end;
+    font-family: 'Raleway', sans-serif;
+    align-items: center;
+
+    .icon {
+      margin-right: 5px;
+    }
+  }
 }

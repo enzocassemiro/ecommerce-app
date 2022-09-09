@@ -3,7 +3,7 @@
 
   <div class="left">
     <img src="../../../../../assets/penrose-triangle.png" alt="">
-    <h1> - Admin</h1>
+    <h1> Three Shop(Admin)</h1>
   </div>
 
   <div class="center">
@@ -33,8 +33,8 @@
 <div *ngIf="type == 'client'" class="grid-client">
 
   <div class="left">
-    <img src="../../../../../assets/penrose-triangle.png" alt="">
-    <h1> Three Shop</h1>
+    <img class="image" routerLink="/" src="../../../../../assets/penrose-triangle.png" alt="">
+    <h1 class="link" routerLink="/"> Three Shop</h1>
   </div>
 
   <div class="center">
@@ -49,8 +49,25 @@
     </span>
   </div>
 
-  <div>
-    <h3>Promos</h3>
+  <div class="right">
+    <h3>UP TO 70% OFF</h3>
+  </div>
+</div>
+
+<div *ngIf="type == 'cart'" class="grid-cart">
+
+  <div class="left">
+    <img class="image" routerLink="/" src="../../../../../assets/penrose-triangle.png" alt="">
+    <h1 class="link" routerLink="/"> Three Shop</h1>
+  </div>
+
+  <div class="user">
+    <div class="icon">
+      <i class="pi pi-user"></i>
+    </div>
+    <div>
+      <p>{{user?.name}} {{user?.last_name}}</p>
+    </div>
   </div>
 </div>
 
