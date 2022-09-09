@@ -1,0 +1,128 @@
+<p-toast position="top-right" ></p-toast>
+
+<p-dialog
+  header="REMOVE PRODUCT!"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="displayDelete"
+  [style]="{width: '50vw'}">
+    <p>Are you sure you want delete this product from your Cart?</p>
+    <ng-template pTemplate="footer">
+        <button
+          icon="pi pi-check"
+          (click)="displayDelete = false"
+          pButton
+          pRipple
+          type="button"
+          label="Cancel"
+          class="p-button-warning">
+        </button>
+        <button
+          icon="pi pi-trash"
+          (click)="removeProductCart()"
+          pButton
+          pRipple
+          type="button"
+          label="Remove"
+          class="p-button-danger">
+        </button>
+      </ng-template>
+</p-dialog>
+
+<app-header type="cart" [user]="user"></app-header>
+
+<div class="wellcome">
+  <h3 class="wellcome__text" >Hi, {{user.name}}. Welcome to your Cart!</h3>
+</div>
+
+<div class="cart">
+
+  <h2 class="cart__title">Your cart:</h2>
+  <div
+  *ngIf="user.cart.length == 0; else cartItem"
+  class="cart__items--empty">
+  <h3>Your cart is empty! 🥺</h3>
+</div>
+
+<ng-template #cartItem >
+  <div class="cart__resume">
+    <h1 class="resume__title">Resume</h1>
+    <div class="resume__price">
+      <h3>Price of your products: {{resumeCart.price | currency:'BRL'}}</h3>
+      <h3>Total payment (10% OFF): {{resumeCart.price - (resumeCart.price * 0.10) | currency:'BRL'}}</h3>
+    </div>
+    <div class="resume__price--installment">
+      <h3>Total installment payment 10x: {{(resumeCart.price / 10) * 10 | currency:'BRL'}}</h3>
+      <h3>Installment payment 10x: {{resumeCart.price / 10 | currency:'BRL'}}</h3>
+    </div>
+    <div class="resume__buttons">
+      <button
+        (click)="paymentCart()"
+        pButton
+        pRipple
+        type="button"
+        label="PAYMENT"
+        class="p-button-success">
+      </button>
+      <button
+        routerLink="/"
+        pButton
+        pRipple
+        type="button"
+        label="KEEP BUYING"
+        class="p-button-secondary">
+      </button>
+    </div>
+  </div>
+
+  <div class="cart__grid" *ngFor="let product of user.cart">
+      <div class="grid__flex">
+        <div>
+          <img class="grid__img" [src]="product.product_info.image" alt="">
+        </div>
+        <div class="flex__info">
+          <div class="info__product-name">
+            {{product.product_info.name}}
+          </div>
+          <div class="info__quantity">
+            <p-inputNumber
+              [(ngModel)]="product.quantity"
+              (ngModelChange)="changeQuantityProduct(product)"
+              [showButtons]="true"
+              buttonLayout="horizontal"
+              inputId="horizontal"
+              spinnerMode="horizontal"
+              [min]="1"
+              [size]="1"
+              [step]="1"
+              decrementButtonClass="p-button-danger"
+              incrementButtonClass="p-button-success"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus">
+            </p-inputNumber>
+            <button
+            (click)="showDeleteDialog(product)"
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger button">
+            </button>
+          </div>
+          <div class="info__prices">
+            <div>
+              Price Unit: {{product.product_info.price | currency:'BRL'}}
+            </div>
+            <div>
+              Total: {{product.product_info.price * product.quantity | currency:'BRL'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+
+

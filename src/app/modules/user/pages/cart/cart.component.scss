@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.wellcome{
+  display: flex;
+  place-content: center center;
+  margin-top: 20px;
+
+  .wellcome__text {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  place-content: center center;
+  align-items: center;
+  margin-top: 20px;
+
+  .cart__title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+  }
+
+  .cart__items--empty {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+  }
+
+  .cart__resume {
+    display: flex;
+    flex-direction: column;
+    place-content: center center;
+    align-items: center;
+    margin: 5px 0 15px;
+    width: 70%;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+
+    font-family: 'Roboto', sans-serif;
+
+    .resume__title {
+      padding-top: 10px;
+    }
+
+    .resume__price {
+      background-color: #E5FFF1;
+      padding: 50px;
+      margin: 5px 0;
+      color: #1F9050;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+
+    .resume__price--installment {
+      padding-top: 25px;
+    }
+
+    .resume__buttons {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+
+    }
+
+    .resume__buttons > button {
+      margin: 5px;
+    }
+  }
+
+  .cart__grid {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 200px);
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 70%;
+
+    .grid__flex {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+
+      .grid__img {
+        max-height: 175px;
+        margin: 0 10px;
+      }
+
+      .flex__info {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+
+        .info__product-name {
+          font-family: 'Roboto', sans-serif;
+          font-size: 1.3em;
+        }
+
+        .info__quantity {
+          display: flex;
+          flex-direction: column;
+          place-content: center center;
+          align-items: center;
+          padding-right: 20px;
+
+          .button {
+            margin-top: 5px;
+          }
+        }
+
+        .info__prices {
+          margin: 0 20px;
+          width: 185px;
+          font-size: 1.2em;
+          font-weight: 600;
+
+          font-family: 'Roboto', sans-serif;
+        }
+
+      }
+    }
+
+  }
+
+
+}
