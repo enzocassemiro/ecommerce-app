@@ -54,7 +54,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.getAllProducts();
     this.searchService.searchValue$
       .pipe(takeUntil(this.componentDestroyer$))
-      .subscribe(value => this.productService.getProductByNameLike(value)
+      .subscribe(value =>  this.productService.getProductByNameLike(value)
       .subscribe(value => {
         this.products = value
       }));
@@ -63,10 +63,6 @@ export class AdminComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.componentDestroyer$.next(true);
     this.componentDestroyer$.complete();
-  }
-
-  test() {
-    console.log(this.productSelectedEdit);
   }
 
   setupProductForm(): void {
@@ -78,7 +74,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       quantity: [0, Validators.required],
       quantity_sell: [0],
       price: [0, Validators.required],
-      promotion: [false, Validators.required],
+      promotion: [false],
       promotion_percentage: [0],
       description: ['', Validators.required],
       tags: ['', Validators.required],
@@ -91,13 +87,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.productService.createProduct(this.productForm.value)
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
-      next: (value) => {
-        console.log('Product Created!');
-      },
       complete: () => {
         this.getAllProducts();
         this.showSuccess("Success!",'Product created!');
         this.displayCreate = false;
+        this.productForm.reset()
       }
     })
   }
@@ -157,8 +151,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.productService.deleteProductById(id)
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
-      next: (deleted) => {
-        console.log('Product has been deleted');
+      next: () => {
         const indexOfObject = this.products.findIndex(object => {
           return object.id === id;
         });
@@ -176,9 +169,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.productService.updateProduct(product)
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
-      next: () => {
-
-      },
       complete: () => {
         this.displayEdit = false;
         this.showSuccess('Success Updated!',`Product with id ${product.id} updated!`)
