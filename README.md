@@ -12,9 +12,9 @@
 
 
  ## 📈 Future Improvements
-  [ ] Login
-  [ ] Product Page with Detail
-  [ ] Categories (Filter)
+ - [ ] Login
+ - [ ] Product Page with Detail
+ - [ ] Categories (Filter)
 
 ## 📷 Images 
 ### Buying Products
